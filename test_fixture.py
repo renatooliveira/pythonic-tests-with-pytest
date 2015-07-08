@@ -1,20 +1,10 @@
-from selenium.webdriver import Firefox
 import pytest
 
 
-@pytest.fixture(scope="session")
-def webdriver(request):
-    driver = Firefox()
-    request.addfinalizer(driver.quit)
-    return driver
+@pytest.fixture()
+def answer():
+    return 42
 
 
-def test_pug_website_title(webdriver):
-    webdriver.get("http://pycon.pug.pe/XXXVIII/")
-    assert "Encontro do PUG-PE" in webdriver.title
-
-
-def test_python_website_title(webdriver):
-    webdriver.get("http://python.org/")
-    assert "Python" in webdriver.title
-
+def test_the_ultimate_question_about_life_the_universe_and_everything(answer):
+    assert answer == 42
